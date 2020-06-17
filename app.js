@@ -9,17 +9,17 @@ app.use(bodyParser.json());
 
 
 //Import routes
-const chanelsRoute = require('./routers/chanels');
+const channelsRoute = require('./routers/channels');
 
-app.use('/chanels', chanelsRoute);
+app.use('/channels', channelsRoute);
 
 //Routes
 app.get('/', (req, res) => {
     res.send('We are on home');
 });
 
-app.get('/chanels', (req, res) => {
-    res.send('We are on Chanels');
+app.get('/channels', (req, res) => {
+    res.send('We are on Channels');
 });
 
 //Connect to DB

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ChanelSchema = mongoose.Schema({
+const ChannelSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -15,4 +15,4 @@ const ChanelSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Chanel', ChanelSchema);
+module.exports = mongoose.model('Channel', ChannelSchema);
