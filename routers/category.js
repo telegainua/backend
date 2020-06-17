@@ -25,4 +25,14 @@ router.post("/", async (req, res) => {
   }
 });
 
+//Delete
+router.delete('/:cat_Id', async (req, res) => {
+  try {
+      const removedCategory = await Category.remove({_id: req.params.cat_Id});
+      res.json(removedCategory);
+  } catch (err) {
+      res.json({message: err});
+  }
+});
+
 module.exports = router;
