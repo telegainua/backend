@@ -25,13 +25,22 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 //Delete
+
 router.delete('/:cat_Id', async (req, res) => {
   try {
       const removedCategory = await Category.remove({_id: req.params.cat_Id});
       res.json(removedCategory);
   } catch (err) {
       res.json({message: err});
+
+router.get("/:cat_id", async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.cat_id);
+    res.json(category);
+  } catch (err) {
+    res.json({ message: err });
   }
 });
 
