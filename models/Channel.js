@@ -9,6 +9,9 @@ const ChannelSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    categories: {
+      type: Array
+    },
     date: {
         type: Date,
         default: Date.now

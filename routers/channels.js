@@ -5,7 +5,8 @@ const Channel = require('../models/Channel');
 
 router.get('/', async (req, res) => {
    try {
-       const channels = await Channel.find();
+       const categoryId = req.query.cat_id;
+       const channels = await Channel.find({categories: {$all: [Number(categoryId)]}});
        res.json(channels);
    } catch(e) {
         res.json({message: err});
@@ -16,7 +17,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const channel = new Channel({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        categories: req.body.categories
     });
 
     try {
@@ -58,10 +60,6 @@ router.patch('/:channelId', async (req, res) => {
         res.json({message: err});
     }
 });
-
-
-
-
 
 
 module.exports = router;

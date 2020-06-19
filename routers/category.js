@@ -30,10 +30,12 @@ router.post("/", async (req, res) => {
 
 router.delete('/:cat_Id', async (req, res) => {
   try {
-      const removedCategory = await Category.remove({_id: req.params.cat_Id});
-      res.json(removedCategory);
+    const removedCategory = await Category.remove({_id: req.params.cat_Id});
+    res.json(removedCategory);
   } catch (err) {
-      res.json({message: err});
+    res.json({message: err});
+  }
+});
 
 router.get("/:cat_id", async (req, res) => {
   try {
