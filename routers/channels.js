@@ -5,19 +5,18 @@ const Channel = require("../models/Channel");
 router.get("/", async (req, res) => {
   try {
     let filter = {};
-    Object.keys(req.query).forEach((item)=> {
-
+    Object.keys(req.query).forEach((item) => {
       if (item === "cat_id") {
         filter.categories = { $all: [Number(req.query.cat_id)] };
       }
 
-      if(item === "user_count_gte"){
-        filter.userCount = { $gte: Number(req.query.user_count_gte) }
+      if (item === "user_count_gte") {
+        filter.userCount = { $gte: Number(req.query.user_count_gte) };
       }
 
-      // TODO:: Добавить фильтр для получения списка где количесвто пользователей меньше чем переданное значение
-      // TODO:: query parametr: user_count_lte
-
+      if (item === "user_count_lte") {
+        filter.userCount = { $lte: Number(req.query.user_count_lte) };
+      }
     });
     const channels = await Channel.find(filter);
     res.json(channels);
