@@ -32,6 +32,7 @@ router.post("/", async (req, res) => {
     description: req.body.description,
     categories: req.body.categories,
     userCount: req.body.userCount,
+    name: req.body.name
   });
 
   try {
