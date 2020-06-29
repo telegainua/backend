@@ -20,6 +20,10 @@ const ChannelSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  name: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Channel", ChannelSchema);
