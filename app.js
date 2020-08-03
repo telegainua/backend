@@ -9,12 +9,16 @@ require("dotenv/config");
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(express.static('public'));
+
 //Import routes
 const channelsRoute = require("./routers/channels");
 const categoriesRoute = require("./routers/category");
+const uploadRoute = require("./routers/upload");
 
 app.use("/channels", channelsRoute);
 app.use("/category", categoriesRoute);
+app.use("/upload", uploadRoute);
 
 //Routes
 app.get("/", (req, res) => {
@@ -30,4 +34,4 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
   console.log("connected to DB!");
 });
 
-app.listen(3000);
+app.listen(9000);

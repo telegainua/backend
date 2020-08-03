@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {success, notFound} = require('../services/response');
 const Category = require("../models/Category");
 
 router.get("/", async (req, res) => {
@@ -39,8 +40,9 @@ router.delete('/:cat_Id', async (req, res) => {
 
 router.get("/:cat_id", async (req, res) => {
   try {
-    const category = await Category.findById(req.params.cat_id);
-    res.json(category);
+   Category.findById(req.params.cat_id)
+       .then(notFound(res))
+       .then(success(res, 200))
   } catch (err) {
     res.json({ message: err });
   }

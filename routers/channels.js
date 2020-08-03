@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
         filter.userCount = { $lte: Number(req.query.user_count_lte) };
       }
     });
-    const channels = await Channel.find(filter);
+    const channels = await Channel.find(filter).populate('image');
     res.json(channels);
   } catch (e) {
     res.json({ message: err });
@@ -32,7 +32,8 @@ router.post("/", async (req, res) => {
     description: req.body.description,
     categories: req.body.categories,
     userCount: req.body.userCount,
-    name: req.body.name
+    name: req.body.name,
+    image: req.body.image
   });
 
   try {
@@ -45,7 +46,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:channelId", async (req, res) => {
   try {
-    const channel = await Channel.findById(req.params.channelId);
+    const channel = await Channel.findById(req.params.channelId).populate('image');
     res.json(channel);
   } catch (err) {
     res.json({ message: err });

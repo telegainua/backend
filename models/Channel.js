@@ -24,6 +24,10 @@ const ChannelSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Upload'
+  }
 });
 
 module.exports = mongoose.model("Channel", ChannelSchema);
