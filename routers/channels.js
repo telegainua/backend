@@ -25,6 +25,24 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/search", async (req, res) => {
+     try {
+       const searchText = req.query.searchText;
+       const filter = {};
+
+       if(searchText.length > 0) {
+         filter.$text = {
+           $search: searchText
+         }
+       }
+
+       const channels = await Channel.find(filter).populate('image');
+       res.json(channels)
+     } catch (e) {
+       res.json({message: e})
+     }
+});
+
 //Create channel
 router.post("/", async (req, res) => {
   const channel = new Channel({

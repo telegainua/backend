@@ -30,4 +30,6 @@ const ChannelSchema = mongoose.Schema({
   }
 });
 
+ChannelSchema.index({'title': 'text', 'description': 'text'});
+
 module.exports = mongoose.model("Channel", ChannelSchema);
